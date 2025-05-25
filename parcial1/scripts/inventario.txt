@@ -1,0 +1,2 @@
+INV-001; Electrónica; Laptop HP; 15; 1200.50; TechSupplies; 2023-10-05  
+INV-002; Oficina; Silla ergonómica; 30; 199.99; OfficePro; 2023-09-15
