@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice List</title>
+</head>
+<body>
+    <h1>Invoice List</h1>
+    <a href="{{ url_for('add_invoice') }}">Add New Invoice</a>
+    <ul>
+        {% for invoice in invoices %}
+            <li>{{ invoice.numero_factura }} - {{ invoice.nombre }} {{ invoice.apellido }} - {{ invoice.fecha }} - {{ invoice.total }} - <a href="{{ url_for('edit_invoice', id=invoice.id) }}">Edit</a> - <a href="{{ url_for('delete_invoice', id=invoice.id) }}">Delete</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

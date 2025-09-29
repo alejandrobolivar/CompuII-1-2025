@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado de la Integral</title>
+</head>
+<body>
+    <h1>Resultado de la Integral</h1>
+    <p>La integral es: {{ result }}</p>
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Gráfico de la Integral">
+    <br>
+    <a href="{{ url_for('index') }}">Calcular otra integral</a>
+</body>
+</html>

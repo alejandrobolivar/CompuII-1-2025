@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Integrales</title>
+</head>
+<body>
+    <h1>Calculadora de Integrales Definidas</h1>
+    <form action="/integrate" method="post">
+        <label for="a">Límite inferior (a):</label>
+        <input type="text" id="a" name="a" required>
+        <br>
+        <label for="b">Límite superior (b):</label>
+        <input type="text" id="b" name="b" required>
+        <br>
+        <label for="func">Función (en términos de x):</label>
+        <input type="text" id="func" name="func" required>
+        <br>
+        <button type="submit">Calcular Integral</button>
+    </form>
+</body>
+</html>

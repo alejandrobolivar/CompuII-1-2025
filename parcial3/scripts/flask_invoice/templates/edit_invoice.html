@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Invoice</title>
+</head>
+<body>
+    <h1>Edit Invoice</h1>
+    <form method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ invoice.nombre }}">
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" value="{{ invoice.apellido }}">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" value="{{ invoice.fecha }}">
+        <label for="numero_factura">Número de Factura:</label>
+        <input type="text" id="numero_factura" name="numero_factura" value="{{ invoice.numero_factura }}">
+        <h2>Productos</h2>
+        <div id="productos">
+            {% for product in products %}
+            <div class="producto">
+                <label for="producto">Producto:</label>
+                <input type="text" name="producto" value="{{ product.producto }}">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" name="cantidad" value="{{ product.cantidad }}">
+                <label for="precio_unitario">Precio Unitario:</label>
+                <input type="number" step="0.01" name="precio_unitario" value="{{ product.precio_unitario }}">
+                <button type="button" onclick="eliminarProducto(this, '{{ product.id }}')">Eliminar</button>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="button" onclick="agregarProducto()">Agregar Producto</button>
+        <button type="submit">Update</button>
+    </form>
+    <a href="{{ url_for('index') }}">Back to List</a>
+    <script>
+        function agregarProducto() {
+            var div = document.createElement('div');
+            div.className = 'producto';
+            div.innerHTML = '<label for="producto">Producto:</label><input type="text" name="producto"><label for="cantidad">Cantidad:</label><input type="number" name="cantidad"><label for="precio_unitario">Precio Unitario:</label><input type="number" step="0.01" name="precio_unitario"><button type="button" onclick="this.parentElement.remove()">Eliminar</button>';
+            document.getElementById('productos').appendChild(div);
+        }
+
+        function eliminarProducto(button, productId) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "{{ url_for('delete_product', id=0) }}".replace('0', productId), true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    button.parentElement.remove();
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Invitados</title>
+</head>
+<body>
+    <h1>Subir listas de invitados</h1>
+    <form action="/procesar" method="post" enctype="multipart/form-data">
+        <label for="novio">Lista del Novio:</label>
+        <input type="file" name="novio" id="novio" required><br><br>
+        <label for="novia">Lista de la Novia:</label>
+        <input type="file" name="novia" id="novia" required><br><br>
+        <button type="submit">Procesar</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .resultado {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .success { background-color: #d4edda; color: #155724; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .danger { background-color: #f8d7da; color: #721c24; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        
+        .imc-valor {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .clasificacion {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .recomendacion {
+            font-style: italic;
+            margin-top: 10px;
+        }
+        
+        .info-box {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏋️ Calculadora de IMC</h1>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="peso">Peso (kg):</label>
+                <input type="number" step="0.1" id="peso" name="peso" 
+                       placeholder="Ej: 70.5" required min="1" max="300">
+            </div>
+            
+            <div class="form-group">
+                <label for="altura">Altura (metros):</label>
+                <input type="number" step="0.01" id="altura" name="altura" 
+                       placeholder="Ej: 1.75" required min="0.5" max="2.5">
+            </div>
+            
+            <button type="submit">Calcular IMC</button>
+        </form>
+
+        {% if resultado %}
+            {% if resultado.error %}
+                <div class="resultado error">
+                    <h3>❌ Error</h3>
+                    <p>{{ resultado.error }}</p>
+                </div>
+            {% else %}
+                <div class="resultado {{ resultado.color }}">
+                    <h3>📊 Resultado de tu IMC</h3>
+                    <div class="imc-valor">{{ "%.1f"|format(resultado.imc) }}</div>
+                    <div class="clasificacion">{{ resultado.clasificacion }}</div>
+                    
+                    <p><strong>Peso:</strong> {{ resultado.peso }} kg</p>
+                    <p><strong>Altura:</strong> {{ resultado.altura }} m</p>
+                    
+                    <div class="recomendacion">
+                        <strong>Recomendación:</strong><br>
+                        {{ resultado.recomendacion }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+        
+        <div class="info-box">
+            <h4>📋 Clasificación del IMC (OMS):</h4>
+            <ul style="text-align: left; margin-left: 20px;">
+                <li>< 18.5: Bajo peso</li>
+                <li>18.5 - 24.9: Peso normal</li>
+                <li>25 - 29.9: Sobrepeso</li>
+                <li>> 30: Obesidad</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Mejora: Mantener los valores en el formulario después del envío
+        document.addEventListener('DOMContentLoaded', function() {
+            const pesoInput = document.getElementById('peso');
+            const alturaInput = document.getElementById('altura');
+            
+            // Si hay resultado, mantener los valores ingresados
+            {% if resultado and not resultado.error %}
+                pesoInput.value = {{ resultado.peso }};
+                alturaInput.value = {{ resultado.altura }};
+            {% endif %}
+        });
+    </script>
+</body>
+</html>
