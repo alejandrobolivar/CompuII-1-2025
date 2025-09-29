@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Graficador de Funciones</title>
+</head>
+<body>
+    <h1>Graficador de Funciones</h1>
+    <form method="post">
+        <label for="function">Función (en términos de x):</label>
+        <input type="text" id="function" name="function" required>
+        <button type="submit">Graficar</button>
+    </form>
+    {% if plot_url %}
+        <h2>Resultado:</h2>
+        <img src="data:image/png;base64,{{ plot_url }}">
+    {% endif %}
+</body>
+</html>

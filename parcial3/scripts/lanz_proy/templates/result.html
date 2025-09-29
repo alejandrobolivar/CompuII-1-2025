@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+</head>
+<body>
+    <h1>Resultados</h1>
+    <h2>Variables conocidas</h2>
+    <ul>
+        {% for var, val in known_vars.items() %}
+            <li>{{ var }}: {{ val }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Variables calculadas</h2>
+    <ul>
+        {% for var, val in calculated_vars.items() %}
+            <li>{{ var }}: {{ val }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Volver</a>
+</body>
+</html>

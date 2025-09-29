@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graficar Línea entre Dos Puntos</title>
+</head>
+<body>
+    <h1>Graficar Línea entre Dos Puntos</h1>
+    <form action="/solve" method="post">
+        <label for="x1">x1:</label>
+        <input type="text" id="x1" name="x1"><br>
+        <label for="y1">y1:</label>
+        <input type="text" id="y1" name="y1"><br>
+        <label for="x2">x2:</label>
+        <input type="text" id="x2" name="x2"><br>
+        <label for="y2">y2:</label>
+        <input type="text" id="y2" name="y2"><br>
+        <button type="submit">Resolver</button>
+        <button type="button" onclick="window.location.href='/clear'">Limpiar</button>
+    </form>
+    {% if plot_url %}
+        <h2>Gráfica:</h2>
+        <img src="data:image/png;base64,{{ plot_url }}">
+    {% endif %}
+    {% if error %}
+        <h2>Error:</h2>
+        <p>{{ error }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+</head>
+<body>
+    <h1>Resultado</h1>
+    {% if img_base64 %}
+        <img src="data:image/png;base64,{{ img_base64 }}" alt="Gráfica de la línea en 3D">
+    {% else %}
+        <p>Hubo un error al generar la gráfica. Por favor, verifica los valores ingresados.</p>
+    {% endif %}
+    <a href="/">Volver</a>
+</body>
+</html>
