@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lista de Estudiantes</title>
+  </head>
+  <body>
+    <h1>Lista de Estudiantes</h1>
+    <table border="1">
+      <tr>
+        <th>Cédula</th>
+        <th>Nombre</th>
+        <th>Nota 1</th>
+        <th>Nota 2</th>
+        <th>Nota 3</th>
+      </tr>
+      {% for student in students %}
+      <tr>
+        <td>{{ student[0] }}</td>
+        <td>{{ student[1] }}</td>
+        <td>{{ student[2] }}</td>
+        <td>{{ student[3] }}</td>
+        <td>{{ student[4] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('index') }}">Agregar otro estudiante</a>
+  </body>
+</html>

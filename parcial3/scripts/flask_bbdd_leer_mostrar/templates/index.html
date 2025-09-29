@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Agregar Estudiante</title>
+  </head>
+  <body>
+    <h1>Agregar Estudiante</h1>
+    <form action="{{ url_for('add_student') }}" method="post">
+      Cédula: <input type="text" name="cedula"><br>
+      Nombre: <input type="text" name="nombre"><br>
+      Nota 1: <input type="text" name="nota1"><br>
+      Nota 2: <input type="text" name="nota2"><br>
+      Nota 3: <input type="text" name="nota3"><br>
+      <input type="submit" value="Guardar">
+    </form>
+    <br>
+    <a href="{{ url_for('show_students') }}">Mostrar Estudiantes</a>
+  </body>
+</html>

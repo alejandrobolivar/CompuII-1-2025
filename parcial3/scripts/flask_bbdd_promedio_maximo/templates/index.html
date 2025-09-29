@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Promedio de Notas</title>
+</head>
+<body>
+    <h1>Promedio de Notas de los Estudiantes</h1>
+    <table border="1">
+        <tr>
+            <th>Cédula</th>
+            <th>Nombre</th>
+            <th>Promedio</th>
+        </tr>
+        {% for student in student_averages %}
+        <tr>
+            <td>{{ student[0] }}</td>
+            <td>{{ student[1] }}</td>
+            <td>{{ student[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>Estudiante con Mayor Promedio</h2>
+    <p>{{ top_student[1] }} (Cédula: {{ top_student[0] }}) con un promedio de {{ top_student[2] }}</p>
+</body>
+</html>

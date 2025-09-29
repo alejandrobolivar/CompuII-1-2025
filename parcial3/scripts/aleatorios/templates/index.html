@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Valores Estadísticos</title>
+</head>
+<body>
+    <h1>Valores Estadísticos</h1>
+    <form action="{{ url_for('generar') }}" method="post">
+        <label for="cantidad">Cantidad de valores a generar:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
+        <button type="submit">Generar Valores</button>
+    </form>
+    <form action="{{ url_for('borrar') }}" method="post">
+        <button type="submit">Borrar Valores</button>
+    </form>
+    <h2>Valores</h2>
+    <ul>
+        {% for valor in valores %}
+            <li>{{ valor }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Estadísticas</h2>
+    <p>Media: {{ media }}</p>
+    <p>Mediana: {{ mediana }}</p>
+    <p>Varianza: {{ varianza }}</p>
+    <p>Desviación Estándar: {{ desviacion_estandar }}</p>
+    <h2>Gráfico</h2>
+    <img src="{{ url_for('grafico') }}" alt="Gráfico de Valores">
+</body>
+</html>
