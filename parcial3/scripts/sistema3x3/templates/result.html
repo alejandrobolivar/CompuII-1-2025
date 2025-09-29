@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultado</title>
+</head>
+<body>
+    <h1>Resultado</h1>
+    <p>{{ result }}</p>
+    {% if img_base64 %}
+        <img src="data:image/png;base64,{{ img_base64 }}" alt="Gráfica de las ecuaciones">
+    {% endif %}
+    <a href="/">Volver</a>
+</body>
+</html>
